@@ -3,6 +3,29 @@
    Modern Glassmorphism Theme
    ============================================================ */
 
+/* ── HERO CONTENT ALWAYS VISIBLE (CSS fallback if GSAP slow/blocked) ── */
+.hero-content > * {
+  animation: heroFadeUp 0.7s ease both;
+}
+
+.hero-badge          { animation-delay: 0.15s; }
+.hero-title          { animation-delay: 0.30s; }
+.hero-typed-wrapper  { animation-delay: 0.42s; }
+.hero-description    { animation-delay: 0.54s; }
+.hero-actions        { animation-delay: 0.64s; }
+.hero-socials        { animation-delay: 0.74s; }
+.profile-card-wrapper{ animation: heroFadeRight 0.9s 0.35s ease both; }
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeRight {
+  from { opacity: 0; transform: translateX(32px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
 /* ── CSS VARIABLES ─────────────────────────────────────────── */
 :root {
   --primary:       #00D4FF;
@@ -384,43 +407,45 @@ input, textarea { font-family: inherit; }
   padding-top: 72px;
 }
 
-/* Particles canvas */
+/* Particles canvas — behind everything */
 .particles-canvas {
   position: absolute;
   inset: 0;
   z-index: 0;
   opacity: 0.5;
+  pointer-events: none;
 }
 
-/* Blobs */
+/* Blobs — decorative only, never cover content */
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.12;
+  filter: blur(100px);
+  opacity: 0.10;
   animation: blobFloat 8s ease-in-out infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
 .blob-1 {
-  width: 600px; height: 600px;
+  width: 500px; height: 500px;
   background: var(--primary);
-  top: -200px; left: -200px;
+  top: -180px; left: -180px;
   animation-delay: 0s;
 }
 
 .blob-2 {
-  width: 500px; height: 500px;
+  width: 450px; height: 450px;
   background: var(--secondary);
-  bottom: -150px; right: -150px;
+  bottom: -120px; right: -120px;
   animation-delay: 3s;
 }
 
+/* blob-3 moved to bottom-right so it never overlaps text */
 .blob-3 {
-  width: 350px; height: 350px;
-  background: var(--primary);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+  width: 300px; height: 300px;
+  background: var(--secondary);
+  bottom: 0; right: 30%;
   animation-delay: 6s;
 }
 
@@ -430,15 +455,15 @@ input, textarea { font-family: inherit; }
   66%       { transform: scale(0.95) translate(-15px, 20px); }
 }
 
-/* Mouse spotlight */
+/* Mouse spotlight — pointer-events off, behind content */
 .spotlight {
   position: absolute;
   width: 500px; height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
   pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 0;
   transition: opacity 0.3s;
 }
 
@@ -453,6 +478,13 @@ input, textarea { font-family: inherit; }
   position: relative;
   z-index: 2;
   width: 100%;
+}
+
+/* Hero content — always rendered above background blobs/canvas */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
 }
 
 /* Hero badge */

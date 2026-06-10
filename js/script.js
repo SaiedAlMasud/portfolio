@@ -550,42 +550,31 @@ window.sendEmail = function () {
    13. HERO GSAP ENTRANCE
    ============================================================ */
 function heroEntrance() {
+  // Always make hero content visible first (safety net)
+  const heroEls = document.querySelectorAll(
+    '.hero-badge, .hero-title, .hero-typed-wrapper, .hero-description, .hero-actions, .hero-socials, .profile-card-wrapper'
+  );
+  heroEls.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+
+  // If GSAP not available, CSS keyframes handle animation (see style.css)
   if (typeof gsap === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Entrance animation for hero elements (staggered)
-  gsap.from('.hero-badge', {
-    opacity: 0, y: -20, duration: 0.7, delay: 0.3, ease: 'power3.out',
-  });
-  gsap.from('.hero-title', {
-    opacity: 0, y: 30, duration: 0.8, delay: 0.5, ease: 'power3.out',
-  });
-  gsap.from('.hero-typed-wrapper', {
-    opacity: 0, y: 20, duration: 0.7, delay: 0.7, ease: 'power3.out',
-  });
-  gsap.from('.hero-description', {
-    opacity: 0, y: 20, duration: 0.7, delay: 0.85, ease: 'power3.out',
-  });
-  gsap.from('.hero-actions', {
-    opacity: 0, y: 20, duration: 0.7, delay: 1.0, ease: 'power3.out',
-  });
-  gsap.from('.hero-socials', {
-    opacity: 0, y: 20, duration: 0.7, delay: 1.1, ease: 'power3.out',
-  });
-  gsap.from('.profile-card-wrapper', {
-    opacity: 0, x: 40, scale: 0.95, duration: 1.0, delay: 0.6, ease: 'power3.out',
-  });
+  // Animate hero text elements in sequence
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-  // Subtle parallax on blobs on scroll
-  gsap.to('.blob-1', {
-    y: -80,
-    scrollTrigger: { trigger: '.hero', scrub: 1.5 },
-  });
-  gsap.to('.blob-2', {
-    y: 60,
-    scrollTrigger: { trigger: '.hero', scrub: 1.5 },
-  });
+  tl.from('.hero-badge',          { opacity: 0, y: -20, duration: 0.6, delay: 0.2 })
+    .from('.hero-title',          { opacity: 0, y: 30,  duration: 0.7 }, '-=0.3')
+    .from('.hero-typed-wrapper',  { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
+    .from('.hero-description',    { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
+    .from('.hero-actions',        { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
+    .from('.hero-socials',        { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
+    .from('.profile-card-wrapper',{ opacity: 0, x: 40, scale: 0.95, duration: 0.9 }, '-=0.8');
+
+  // Subtle blob parallax on scroll
+  gsap.to('.blob-1', { y: -80, scrollTrigger: { trigger: '.hero', scrub: 1.5 } });
+  gsap.to('.blob-2', { y:  60, scrollTrigger: { trigger: '.hero', scrub: 1.5 } });
 }
 
 /* ============================================================
