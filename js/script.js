@@ -12,9 +12,9 @@
    2. Email Templates → Create Template (use {{name}}, {{email}}, {{subject}}, {{message}})
    3. Account → Public Key
    ──────────────────────────────────────────────────────────── */
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz789'
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'abcDEFghiJKL123'
+const EMAILJS_SERVICE_ID  = 'service_05xv9ff';   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'template_dq75uf9';  // e.g. 'template_xyz789'
+const EMAILJS_PUBLIC_KEY  = 'Zi6VVGKydud2mDnJa';   // e.g. 'abcDEFghiJKL123'
 
 /* ============================================================
    1. INITIALISE LIBRARIES
@@ -331,20 +331,33 @@ function initCounters() {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el     = entry.target;
-      const target = parseInt(el.dataset.count, 10);
+      const target = parseFloat(el.dataset.count);  // ← Changed to parseFloat
       const dur    = 1400;
       const step   = 16;
       const steps  = dur / step;
       let current  = 0;
-
+      
+      // Check if target has decimal places
+      const decimals = (target.toString().split('.')[1] || '').length;
+      
       const increment = target / steps;
       const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
-          el.textContent = target;
+          // Format with correct decimal places
+          if (decimals > 0) {
+            el.textContent = target.toFixed(decimals);
+          } else {
+            el.textContent = target;
+          }
           clearInterval(timer);
         } else {
-          el.textContent = Math.floor(current);
+          // Show current value with proper decimal formatting
+          if (decimals > 0) {
+            el.textContent = current.toFixed(decimals);
+          } else {
+            el.textContent = Math.floor(current);
+          }
         }
       }, step);
 
@@ -371,8 +384,8 @@ const projectData = {
       'Deployed with Vercel CI/CD for zero-downtime continuous delivery',
     ],
     tech:   ['Next.js', 'React.js', 'MongoDB', 'Node.js', 'Express.js', 'Tailwind CSS', 'Better Auth', 'DaisyUI'],
-    github: 'https://github.com/SaiedAlMasud',
-    live:   '#',
+    github: 'https://github.com/SaiedAlMasud/QurbaniHat',
+    live:   'https://qurbani-saiedalmasud.vercel.app/',
   },
   drivefleet: {
     num:   '02',
@@ -386,8 +399,8 @@ const projectData = {
       'Framer Motion animations for premium UX; deployed on Vercel with protected routes',
     ],
     tech:   ['Next.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Better Auth', 'Tailwind CSS', 'HeroUI', 'Framer Motion'],
-    github: 'https://github.com/SaiedAlMasud',
-    live:   '#',
+    github: 'https://github.com/SaiedAlMasud/DriveFleet-Client',
+    live:   'https://saied-al-masud-drivefleet.vercel.app/',
   },
   docappoint: {
     num:   '03',
@@ -401,7 +414,7 @@ const projectData = {
       'Appointment booking, schedule management, and patient record tracking',
     ],
     tech:   ['ASP.NET Core MVC', 'C#', 'SQL Server', 'Entity Framework Core', 'Bootstrap', 'Cookie Auth'],
-    github: 'https://github.com/SaiedAlMasud',
+    github: 'https://github.com/SaiedAlMasud/Doctor-Appointment-System',
     live:   null,
   },
   gamemart: {
@@ -416,7 +429,7 @@ const projectData = {
       'Sales management with transaction history',
     ],
     tech:   ['C#', 'WinForms', 'MySQL', '.NET Framework'],
-    github: 'https://github.com/SaiedAlMasud',
+    github: null,
     live:   null,
   },
 };
