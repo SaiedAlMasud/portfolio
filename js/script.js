@@ -394,7 +394,7 @@ const projectData = {
       'Tailwind CSS',
       'Shadcn UI'
     ],
-    github: 'https://github.com/SaiedAlMasud/RecipeHub-Client',
+    github: 'https://github.com/SaiedAlMasud/RecipeHub---Client',
     live: 'https://recipehub-saied-al-masud.vercel.app/',
   },
 
