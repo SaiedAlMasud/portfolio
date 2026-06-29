@@ -12,9 +12,9 @@
    2. Email Templates → Create Template (use {{name}}, {{email}}, {{subject}}, {{message}})
    3. Account → Public Key
    ──────────────────────────────────────────────────────────── */
-const EMAILJS_SERVICE_ID  = 'service_05xv9ff';   // e.g. 'service_abc123'
+const EMAILJS_SERVICE_ID = 'service_05xv9ff';   // e.g. 'service_abc123'
 const EMAILJS_TEMPLATE_ID = 'template_dq75uf9';  // e.g. 'template_xyz789'
-const EMAILJS_PUBLIC_KEY  = 'Zi6VVGKydud2mDnJa';   // e.g. 'abcDEFghiJKL123'
+const EMAILJS_PUBLIC_KEY = 'Zi6VVGKydud2mDnJa';   // e.g. 'abcDEFghiJKL123'
 
 /* ============================================================
    1. INITIALISE LIBRARIES
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
    2. CUSTOM CURSOR
    ============================================================ */
 function initCursor() {
-  const dot  = document.getElementById('cursorDot');
+  const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   if (!dot || !ring) return;
 
@@ -63,14 +63,14 @@ function initCursor() {
   if (window.matchMedia('(hover: none)').matches) return;
 
   let mouseX = 0, mouseY = 0;
-  let ringX  = 0, ringY  = 0;
+  let ringX = 0, ringY = 0;
   let raf;
 
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     dot.style.left = mouseX + 'px';
-    dot.style.top  = mouseY + 'px';
+    dot.style.top = mouseY + 'px';
   });
 
   // Ring follows with lerp for smooth lag
@@ -78,7 +78,7 @@ function initCursor() {
     ringX += (mouseX - ringX) * 0.12;
     ringY += (mouseY - ringY) * 0.12;
     ring.style.left = ringX + 'px';
-    ring.style.top  = ringY + 'px';
+    ring.style.top = ringY + 'px';
     raf = requestAnimationFrame(animateRing);
   }
   animateRing();
@@ -94,11 +94,11 @@ function initCursor() {
 
   // Hide off window
   document.addEventListener('mouseleave', () => {
-    dot.style.opacity  = '0';
+    dot.style.opacity = '0';
     ring.style.opacity = '0';
   });
   document.addEventListener('mouseenter', () => {
-    dot.style.opacity  = '1';
+    dot.style.opacity = '1';
     ring.style.opacity = '1';
   });
 }
@@ -122,8 +122,8 @@ function initScrollProgress() {
    4. NAVBAR — sticky glass + hamburger
    ============================================================ */
 function initNavbar() {
-  const navbar  = document.getElementById('navbar');
-  const burger  = document.getElementById('hamburger');
+  const navbar = document.getElementById('navbar');
+  const burger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   if (!navbar) return;
 
@@ -193,17 +193,17 @@ function initParticles() {
   let W, H, raf;
 
   function resize() {
-    W = canvas.width  = canvas.offsetWidth;
+    W = canvas.width = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
   }
 
   function createParticle() {
     return {
-      x:     Math.random() * W,
-      y:     Math.random() * H,
-      vx:    (Math.random() - 0.5) * 0.3,
-      vy:    (Math.random() - 0.5) * 0.3 - 0.1,
-      size:  Math.random() * 1.5 + 0.5,
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3 - 0.1,
+      size: Math.random() * 1.5 + 0.5,
       alpha: Math.random() * 0.4 + 0.1,
     };
   }
@@ -218,8 +218,8 @@ function initParticles() {
     const maxDist = 100;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
-        const dx   = particles[i].x - particles[j].x;
-        const dy   = particles[i].y - particles[j].y;
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < maxDist) {
           ctx.beginPath();
@@ -269,13 +269,13 @@ function initParticles() {
    ============================================================ */
 function initSpotlight() {
   const spotlight = document.getElementById('spotlight');
-  const hero      = document.querySelector('.hero');
+  const hero = document.querySelector('.hero');
   if (!spotlight || !hero) return;
 
   hero.addEventListener('mousemove', (e) => {
     const rect = hero.getBoundingClientRect();
     spotlight.style.left = (e.clientX - rect.left) + 'px';
-    spotlight.style.top  = (e.clientY - rect.top)  + 'px';
+    spotlight.style.top = (e.clientY - rect.top) + 'px';
   });
 }
 
@@ -294,12 +294,12 @@ function initTyped() {
       'Modern Experiences',
       'Next.js Projects',
     ],
-    typeSpeed:    55,
-    backSpeed:    30,
-    backDelay:    2000,
-    startDelay:   600,
-    loop:         true,
-    cursorChar:   '|',
+    typeSpeed: 55,
+    backSpeed: 30,
+    backDelay: 2000,
+    startDelay: 600,
+    loop: true,
+    cursorChar: '|',
   });
 }
 
@@ -312,11 +312,11 @@ function initTilt() {
   if (window.matchMedia('(hover: none)').matches) return;
 
   VanillaTilt.init(document.querySelectorAll('.project-card'), {
-    max:        6,
-    speed:      400,
-    glare:      true,
+    max: 6,
+    speed: 400,
+    glare: true,
     'max-glare': 0.08,
-    scale:      1.02,
+    scale: 1.02,
   });
 }
 
@@ -330,16 +330,16 @@ function initCounters() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el     = entry.target;
+      const el = entry.target;
       const target = parseFloat(el.dataset.count);  // ← Changed to parseFloat
-      const dur    = 1400;
-      const step   = 16;
-      const steps  = dur / step;
-      let current  = 0;
-      
+      const dur = 1400;
+      const step = 16;
+      const steps = dur / step;
+      let current = 0;
+
       // Check if target has decimal places
       const decimals = (target.toString().split('.')[1] || '').length;
-      
+
       const increment = target / steps;
       const timer = setInterval(() => {
         current += increment;
@@ -372,72 +372,98 @@ function initCounters() {
    11. PROJECT MODALS
    ============================================================ */
 const projectData = {
-  qurbanihat: {
-    num:   '01',
-    title: 'QurbaniHat',
-    type:  'Full Stack · E-Marketplace',
-    desc:  'A full-stack livestock marketplace platform built to enable users to browse animal listings, view detailed information, and submit booking requests — deployed on Vercel with CI/CD.',
+  recipehub: {
+    num: '01',
+    title: 'RecipeHub',
+    type: 'Full Stack · Recipe Sharing Platform',
+    desc: 'A modern recipe sharing platform where users can discover, create, like, and manage recipes. Features premium memberships, Stripe payments, and a comprehensive admin dashboard.',
     highlights: [
-      'Implemented Google OAuth and email/password login using Better Auth with MongoDB integration',
-      'Built reusable React components with Next.js App Router, Tailwind CSS, and DaisyUI',
-      'Optimised routing, state management, and form validation for smooth UX',
-      'Deployed with Vercel CI/CD for zero-downtime continuous delivery',
+      'Implemented Better Auth with Google OAuth and email/password authentication',
+      'Built role-based dashboards for Admin and Users with protected routes',
+      'Integrated Stripe payment gateway for premium membership purchases',
+      'Developed recipe likes, featured recipes, reporting system, and premium recipe access',
+      'Designed responsive UI using Next.js, Tailwind CSS, and Shadcn UI'
     ],
-    tech:   ['Next.js', 'React.js', 'MongoDB', 'Node.js', 'Express.js', 'Tailwind CSS', 'Better Auth', 'DaisyUI'],
-    github: 'https://github.com/SaiedAlMasud/QurbaniHat',
-    live:   'https://qurbani-saiedalmasud.vercel.app/',
+    tech: [
+      'Next.js',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Better Auth',
+      'Stripe',
+      'Tailwind CSS',
+      'Shadcn UI'
+    ],
+    github: 'https://github.com/SaiedAlMasud/RecipeHub-Client',
+    live: 'https://recipehub-saied-al-masud.vercel.app/',
   },
+
   drivefleet: {
-    num:   '02',
+    num: '02',
     title: 'DriveFleet',
-    type:  'Full Stack · Car Rental SaaS',
-    desc:  'A full-stack car rental platform where users can browse, search, filter, and book vehicles. Car owners get CRUD control over listings and booking dashboards.',
+    type: 'Full Stack · Car Rental SaaS',
+    desc: 'A full-stack car rental platform where users can browse, search, filter, and book vehicles. Car owners get CRUD control over listings and booking dashboards.',
     highlights: [
       'Better Auth with Google OAuth and email/password; JWT stored in HTTP-only cookies',
       'Car owner CRUD: add, edit, update, and delete listings with booking history dashboard',
       'Search & filter using MongoDB $regex; booking count tracked with $inc',
       'Framer Motion animations for premium UX; deployed on Vercel with protected routes',
     ],
-    tech:   ['Next.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Better Auth', 'Tailwind CSS', 'HeroUI', 'Framer Motion'],
+    tech: ['Next.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Better Auth', 'Tailwind CSS', 'HeroUI', 'Framer Motion'],
     github: 'https://github.com/SaiedAlMasud/DriveFleet-Client',
-    live:   'https://saied-al-masud-drivefleet.vercel.app/',
+    live: 'https://saied-al-masud-drivefleet.vercel.app/',
+  },
+  qurbanihat: {
+    num: '03',
+    title: 'QurbaniHat',
+    type: 'Full Stack · E-Marketplace',
+    desc: 'A full-stack livestock marketplace platform built to enable users to browse animal listings, view detailed information, and submit booking requests — deployed on Vercel with CI/CD.',
+    highlights: [
+      'Implemented Google OAuth and email/password login using Better Auth with MongoDB integration',
+      'Built reusable React components with Next.js App Router, Tailwind CSS, and DaisyUI',
+      'Optimised routing, state management, and form validation for smooth UX',
+      'Deployed with Vercel CI/CD for zero-downtime continuous delivery',
+    ],
+    tech: ['Next.js', 'React.js', 'MongoDB', 'Node.js', 'Express.js', 'Tailwind CSS', 'Better Auth', 'DaisyUI'],
+    github: 'https://github.com/SaiedAlMasud/QurbaniHat',
+    live: 'https://qurbani-saiedalmasud.vercel.app/',
   },
   docappoint: {
-    num:   '03',
+    num: '04',
     title: 'Doctor Appointment System',
-    type:  '.NET MVC · Healthcare',
-    desc:  'A multi-role healthcare management system for Patients, Doctors, and Administrators — featuring appointment scheduling, patient records, and role-based dashboards.',
+    type: '.NET MVC · Healthcare',
+    desc: 'A multi-role healthcare management system for Patients, Doctors, and Administrators — featuring appointment scheduling, patient records, and role-based dashboards.',
     highlights: [
       'Three distinct roles: Patient, Doctor, Admin — each with tailored dashboards',
       'Cookie-based authentication using ASP.NET ClaimsIdentity for secure access',
       'Entity Framework Core + SQL Server for efficient data management',
       'Appointment booking, schedule management, and patient record tracking',
     ],
-    tech:   ['ASP.NET Core MVC', 'C#', 'SQL Server', 'Entity Framework Core', 'Bootstrap', 'Cookie Auth'],
+    tech: ['ASP.NET Core MVC', 'C#', 'SQL Server', 'Entity Framework Core', 'Bootstrap', 'Cookie Auth'],
     github: 'https://github.com/SaiedAlMasud/Doctor-Appointment-System',
-    live:   null,
+    live: null,
   },
   gamemart: {
-    num:   '04',
+    num: '04',
     title: 'Game Mart Management System',
-    type:  'Desktop · Inventory Management',
-    desc:  'A Windows desktop application for managing game store inventory, product records, and sales — featuring full CRUD operations backed by MySQL.',
+    type: 'Desktop · Inventory Management',
+    desc: 'A Windows desktop application for managing game store inventory, product records, and sales — featuring full CRUD operations backed by MySQL.',
     highlights: [
       'Full CRUD operations for products, stock levels, and sales records',
       'MySQL database integration for persistent data storage',
       'Stock tracking module with low-inventory alerts',
       'Sales management with transaction history',
     ],
-    tech:   ['C#', 'WinForms', 'MySQL', '.NET Framework'],
+    tech: ['C#', 'WinForms', 'MySQL', '.NET Framework'],
     github: null,
-    live:   null,
+    live: null,
   },
 };
 
 function initProjectModals() {
-  const overlay   = document.getElementById('modalOverlay');
-  const closeBtn  = document.getElementById('modalClose');
-  const content   = document.getElementById('modalContent');
+  const overlay = document.getElementById('modalOverlay');
+  const closeBtn = document.getElementById('modalClose');
+  const content = document.getElementById('modalContent');
   if (!overlay || !closeBtn || !content) return;
 
   // Open on card click / keyboard
@@ -459,8 +485,8 @@ function initProjectModals() {
     if (!d) return;
 
     const highlightsHTML = d.highlights.map(h => `<li>${h}</li>`).join('');
-    const techHTML       = d.tech.map(t => `<span>${t}</span>`).join('');
-    const liveBtn        = d.live
+    const techHTML = d.tech.map(t => `<span>${t}</span>`).join('');
+    const liveBtn = d.live
       ? `<a href="${d.live}" target="_blank" rel="noopener" class="btn-primary">Live Demo ↗</a>`
       : `<span class="project-btn-muted" style="padding:14px 28px;border-radius:16px;">No Live Demo</span>`;
 
@@ -497,19 +523,19 @@ function initProjectModals() {
    12. EMAILJS FORM SUBMISSION
    ============================================================ */
 window.sendEmail = function () {
-  const nameEl    = document.getElementById('contactName');
-  const emailEl   = document.getElementById('contactEmail');
+  const nameEl = document.getElementById('contactName');
+  const emailEl = document.getElementById('contactEmail');
   const subjectEl = document.getElementById('contactSubject');
-  const msgEl     = document.getElementById('contactMessage');
-  const btn       = document.getElementById('submitBtn');
-  const btnText   = document.getElementById('btnText');
-  const msgBox    = document.getElementById('formMessage');
+  const msgEl = document.getElementById('contactMessage');
+  const btn = document.getElementById('submitBtn');
+  const btnText = document.getElementById('btnText');
+  const msgBox = document.getElementById('formMessage');
 
   if (!nameEl || !emailEl || !subjectEl || !msgEl) return;
 
   // Simple validation
-  const name    = nameEl.value.trim();
-  const email   = emailEl.value.trim();
+  const name = nameEl.value.trim();
+  const email = emailEl.value.trim();
   const subject = subjectEl.value.trim();
   const message = msgEl.value.trim();
 
@@ -524,13 +550,13 @@ window.sendEmail = function () {
   }
 
   // Loading state
-  btn.disabled   = true;
+  btn.disabled = true;
   btnText.textContent = 'Sending…';
 
   if (typeof emailjs === 'undefined') {
     // EmailJS not configured — show instructions
     showFormMsg('⚠ EmailJS not configured yet. See README.md for setup instructions. Your message: ' + message, 'error');
-    btn.disabled   = false;
+    btn.disabled = false;
     btnText.textContent = 'Send Message';
     return;
   }
@@ -547,13 +573,13 @@ window.sendEmail = function () {
       showFormMsg('Something went wrong. Please email me directly at saiedalmasud@gmail.com', 'error');
     })
     .finally(() => {
-      btn.disabled   = false;
+      btn.disabled = false;
       btnText.textContent = 'Send Message';
     });
 
   function showFormMsg(text, type) {
-    msgBox.textContent  = text;
-    msgBox.className    = 'form-message ' + type;
+    msgBox.textContent = text;
+    msgBox.className = 'form-message ' + type;
     msgBox.style.display = 'block';
     setTimeout(() => { msgBox.style.display = 'none'; }, 6000);
   }
@@ -577,17 +603,17 @@ function heroEntrance() {
   // Animate hero text elements in sequence
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-  tl.from('.hero-badge',          { opacity: 0, y: -20, duration: 0.6, delay: 0.2 })
-    .from('.hero-title',          { opacity: 0, y: 30,  duration: 0.7 }, '-=0.3')
-    .from('.hero-typed-wrapper',  { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
-    .from('.hero-description',    { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
-    .from('.hero-actions',        { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
-    .from('.hero-socials',        { opacity: 0, y: 20,  duration: 0.6 }, '-=0.4')
-    .from('.profile-card-wrapper',{ opacity: 0, x: 40, scale: 0.95, duration: 0.9 }, '-=0.8');
+  tl.from('.hero-badge', { opacity: 0, y: -20, duration: 0.6, delay: 0.2 })
+    .from('.hero-title', { opacity: 0, y: 30, duration: 0.7 }, '-=0.3')
+    .from('.hero-typed-wrapper', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4')
+    .from('.hero-description', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4')
+    .from('.hero-actions', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4')
+    .from('.hero-socials', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4')
+    .from('.profile-card-wrapper', { opacity: 0, x: 40, scale: 0.95, duration: 0.9 }, '-=0.8');
 
   // Subtle blob parallax on scroll
   gsap.to('.blob-1', { y: -80, scrollTrigger: { trigger: '.hero', scrub: 1.5 } });
-  gsap.to('.blob-2', { y:  60, scrollTrigger: { trigger: '.hero', scrub: 1.5 } });
+  gsap.to('.blob-2', { y: 60, scrollTrigger: { trigger: '.hero', scrub: 1.5 } });
 }
 
 /* ============================================================
@@ -607,7 +633,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (!target) return;
     e.preventDefault();
     const offset = 80; // navbar height
-    const top    = target.getBoundingClientRect().top + window.scrollY - offset;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
